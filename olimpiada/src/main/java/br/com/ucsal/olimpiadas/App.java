@@ -21,6 +21,7 @@ public class App {
 		CadastrarProva cadastraProva = new CadastrarProva();
 		CadastrarQuestao cadastrarQuestao = new CadastrarQuestao();
 		EscolherProva escolherProva= new EscolherProva();
+		AplicarProva aplicarProva= new AplicarProva();
 		seed();
 
 		while (true) {
@@ -37,7 +38,7 @@ public class App {
 			case "1" -> cadastrar.cadastrarParticipante(in);
 			case "2" -> cadastraProva.cadastrarProva(in);
 			case "3" -> cadastrarQuestao.cadastrarQuestao(in,escolherProva );
-			case "4" -> aplicarProva();
+			case "4" -> aplicarProva.aplicarProva(in);
 			case "5" -> listarTentativas();
 			case "0" -> {
 				System.out.println("tchau");
@@ -55,72 +56,7 @@ public class App {
 	
 
 
-	static void aplicarProva() {
-		if (participantes.isEmpty()) {
-			System.out.println("cadastre participantes primeiro");
-			return;
-		}
-		if (provas.isEmpty()) {
-			System.out.println("cadastre provas primeiro");
-			return;
-		}
-
-		var participanteId = escolherParticipante();
-		if (participanteId == null)
-			return;
-
-		var provaId = escolherProva();
-		if (provaId == null)
-			return;
-
-		var questoesDaProva = questoes.stream().filter(q -> q.getProvaId() == provaId).toList();
-
-		if (questoesDaProva.isEmpty()) {
-			System.out.println("esta prova não possui questões cadastradas");
-			return;
-		}
-
-		var tentativa = new Tentativa();
-		tentativa.setId(proximaTentativaId++);
-		tentativa.setParticipanteId(participanteId);
-		tentativa.setProvaId(provaId);
-
-		System.out.println("\n--- Início da Prova ---");
-
-		for (var q : questoesDaProva) {
-			System.out.println("\nQuestão #" + q.getId());
-			System.out.println(q.getEnunciado());
-
-			System.out.println("Posição inicial:");
-			imprimirTabuleiroFen(q.getFenInicial());
-
-			for (var alt : q.getAlternativas()) {
-			    System.out.println(alt);
-			}
-
-			System.out.print("Sua resposta (A–E): ");
-			char marcada;
-			try {
-				marcada = Questao.normalizar(in.nextLine().trim().charAt(0));
-			} catch (Exception e) {
-				System.out.println("resposta inválida (marcando como errada)");
-				marcada = 'X';
-			}
-
-			var r = new Resposta();
-			r.setQuestaoId(q.getId());
-			r.setAlternativaMarcada(marcada);
-			r.setCorreta(q.isRespostaCorreta(marcada));
-
-			tentativa.getRespostas().add(r);
-		}
-
-		tentativas.add(tentativa);
-
-		int nota = calcularNota(tentativa);
-		System.out.println("\n--- Fim da Prova ---");
-		System.out.println("Nota (acertos): " + nota + " / " + tentativa.getRespostas().size());
-	}
+	
 
 	public static int calcularNota(Tentativa tentativa) {
 		int acertos = 0;
@@ -140,26 +76,7 @@ public class App {
 	}
 
 
-	static Long escolherParticipante() {
-		System.out.println("\nParticipantes:");
-		for (var p : participantes) {
-			System.out.printf("  %d) %s%n", p.getId(), p.getNome());
-		}
-		System.out.print("Escolha o id do participante: ");
-
-		try {
-			long id = Long.parseLong(in.nextLine());
-			boolean existe = participantes.stream().anyMatch(p -> p.getId() == id);
-			if (!existe) {
-				System.out.println("id inválido");
-				return null;
-			}
-			return id;
-		} catch (Exception e) {
-			System.out.println("entrada inválida");
-			return null;
-		}
-	}
+	
 
 	static Long escolherProva() {
 		System.out.println("\nProvas:");

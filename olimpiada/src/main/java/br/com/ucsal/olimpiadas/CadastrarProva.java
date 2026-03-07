@@ -10,8 +10,6 @@ public class CadastrarProva {
 
 	private int proximaProvaId = 1;
 
-	
-
 	public void cadastrarProva(Scanner in) {
 		System.out.print("Título da prova: ");
 		String titulo = in.nextLine();
