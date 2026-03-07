@@ -12,7 +12,6 @@ public class App {
 	static long proximaQuestaoId = 1;
 	static long proximaTentativaId = 1;
 
-	static final List<Questao> questoes = new ArrayList<>();
 	static final List<Tentativa> tentativas = new ArrayList<>();
 
 
@@ -20,6 +19,8 @@ public class App {
 		Scanner in = new Scanner(System.in);
 		CadastrarParticipante cadastrar= new CadastrarParticipante();
 		CadastrarProva cadastraProva = new CadastrarProva();
+		CadastrarQuestao cadastrarQuestao = new CadastrarQuestao();
+		EscolherProva escolherProva= new EscolherProva();
 		seed();
 
 		while (true) {
@@ -35,7 +36,7 @@ public class App {
 			switch (in.nextLine()) {
 			case "1" -> cadastrar.cadastrarParticipante(in);
 			case "2" -> cadastraProva.cadastrarProva(in);
-			case "3" -> cadastrarQuestao();
+			case "3" -> cadastrarQuestao.cadastrarQuestao(in,escolherProva );
 			case "4" -> aplicarProva();
 			case "5" -> listarTentativas();
 			case "0" -> {
@@ -51,46 +52,7 @@ public class App {
 
 	
 
-	static void cadastrarQuestao() {
-		if (provas.isEmpty()) {
-			System.out.println("não há provas cadastradas");
-			return;
-		}
-
-		var provaId = escolherProva();
-		if (provaId == null)
-			return;
-
-		System.out.println("Enunciado:");
-		var enunciado = in.nextLine();
-
-		var alternativas = new String[5];
-		for (int i = 0; i < 5; i++) {
-			char letra = (char) ('A' + i);
-			System.out.print("Alternativa " + letra + ": ");
-			alternativas[i] = letra + ") " + in.nextLine();
-		}
-
-		System.out.print("Alternativa correta (A–E): ");
-		char correta;
-		try {
-			correta = Questao.normalizar(in.nextLine().trim().charAt(0));
-		} catch (Exception e) {
-			System.out.println("alternativa inválida");
-			return;
-		}
-
-		var q = new Questao();
-		q.setId(proximaQuestaoId++);
-		q.setProvaId(provaId);
-		q.setEnunciado(enunciado);
-		q.setAlternativas(alternativas);
-		q.setAlternativaCorreta(correta);
-
-		questoes.add(q);
-
-		System.out.println("Questão cadastrada: " + q.getId() + " (na prova " + provaId + ")");
-	}
+	
 
 
 	static void aplicarProva() {

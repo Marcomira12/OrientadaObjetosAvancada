@@ -10,12 +10,7 @@ public class CadastrarProva {
 
 	private int proximaProvaId = 1;
 
-	public int getProximaProvaId() {
-		return proximaProvaId;
-	}
-	public void setProximaProvaId(int proximaProvaId) {
-		this.proximaProvaId = proximaProvaId;
-	}
+	
 
 	public void cadastrarProva(Scanner in) {
 		System.out.print("Título da prova: ");
