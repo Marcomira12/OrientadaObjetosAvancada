@@ -8,22 +8,18 @@ public class App {
 	
 	
 	
-	static Participante participantes = new Participante();
 
-	static long proximaProvaId = 1;
 	static long proximaQuestaoId = 1;
 	static long proximaTentativaId = 1;
 
-	static final List<Prova> provas = new ArrayList<>();
 	static final List<Questao> questoes = new ArrayList<>();
 	static final List<Tentativa> tentativas = new ArrayList<>();
 
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		Participante participantes = new Participante();
 		CadastrarParticipante cadastrar= new CadastrarParticipante();
-		
+		CadastrarProva cadastraProva = new CadastrarProva();
 		seed();
 
 		while (true) {
@@ -38,7 +34,7 @@ public class App {
 
 			switch (in.nextLine()) {
 			case "1" -> cadastrar.cadastrarParticipante(in);
-			case "2" -> cadastrarProva();
+			case "2" -> cadastraProva.cadastrarProva(in);
 			case "3" -> cadastrarQuestao();
 			case "4" -> aplicarProva();
 			case "5" -> listarTentativas();
@@ -53,22 +49,7 @@ public class App {
 
 	
 
-	static void cadastrarProva() {
-		System.out.print("Título da prova: ");
-		var titulo = in.nextLine();
-
-		if (titulo == null || titulo.isBlank()) {
-			System.out.println("título inválido");
-			return;
-		}
-
-		var prova = new Prova();
-		prova.setId(proximaProvaId++);
-		prova.setTitulo(titulo);
-
-		provas.add(prova);
-		System.out.println("Prova criada: " + prova.getId());
-	}
+	
 
 	static void cadastrarQuestao() {
 		if (provas.isEmpty()) {

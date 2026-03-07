@@ -7,10 +7,6 @@ import java.util.Scanner;
 public class CadastrarParticipante {
 	private int proximoParticipanteId = 1;
 
-	public int getProximoParticipanteId() {
-		return proximoParticipanteId;
-	}
-
 
 	List<Participante> participantes = new ArrayList<>();
 
@@ -26,7 +22,7 @@ public class CadastrarParticipante {
 			return;
 		}
 		Participante p = new Participante();
-		p.setId(getProximoParticipanteId() + 1);
+		p.setId(proximoParticipanteId++);
 		p.setNome(nome);
 		p.setEmail(email);
 		participantes.add(p);
