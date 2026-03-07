@@ -8,7 +8,7 @@ public class CadastrarQuestao {
 	CadastrarProva provas= new CadastrarProva();
 
 	private static int proximaQuestaoId = 1;
-	List<Questao> questoes = new ArrayList<>();
+	static List<Questao> questoes = new ArrayList<>();
 	
 	public void cadastrarQuestao(Scanner in, EscolherProva escolherProva) {
 

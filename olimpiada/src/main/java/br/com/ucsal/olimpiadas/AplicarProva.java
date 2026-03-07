@@ -13,8 +13,7 @@ public class AplicarProva {
 	CadastrarQuestao questoes = new CadastrarQuestao();
 	ImprimirTabuleiroFen imprimirTabuleiroFen = new ImprimirTabuleiroFen();
 	CalcularNota calcularNota = new CalcularNota();
-	List<Tentativa> tentativas = new ArrayList<>();
-
+	ListarTentativa tentativas= new ListarTentativa();
 	EscolherParticipante escolherParticipante= new EscolherParticipante();
 
 	public void aplicarProva(Scanner in) {
@@ -69,7 +68,7 @@ public class AplicarProva {
 				marcada = 'X';
 			}
 
-			var r = new Resposta();
+			Resposta r = new Resposta();
 			r.setQuestaoId(q.getId());
 			r.setAlternativaMarcada(marcada);
 			r.setCorreta(q.isRespostaCorreta(marcada));
@@ -77,7 +76,7 @@ public class AplicarProva {
 			tentativa.getRespostas().add(r);
 		}
 
-		tentativas.add(tentativa);
+		tentativas.tentativas.add(tentativa);
 
 		int nota = calcularNota.calcularNota(tentativa);
 		System.out.println("\n--- Fim da Prova ---");

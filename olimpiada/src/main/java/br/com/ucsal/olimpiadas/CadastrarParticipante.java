@@ -8,7 +8,7 @@ public class CadastrarParticipante {
 	private int proximoParticipanteId = 1;
 
 
-	List<Participante> participantes = new ArrayList<>();
+	static List<Participante> participantes = new ArrayList<>();
 
 	public void cadastrarParticipante(Scanner in) {
 		System.out.print("Nome: ");

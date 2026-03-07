@@ -6,9 +6,15 @@ import java.util.Scanner;
 
 public class CadastrarProva {
 
-	List<Prova> provas = new ArrayList<>();
+	static List<Prova> provas = new ArrayList<>();
 
 	private int proximaProvaId = 1;
+	
+
+	public int getProximaProvaId() {
+		return proximaProvaId;
+	}
+
 
 	public void cadastrarProva(Scanner in) {
 		System.out.print("Título da prova: ");
