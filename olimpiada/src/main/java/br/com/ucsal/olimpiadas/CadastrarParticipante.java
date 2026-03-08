@@ -2,20 +2,21 @@ package br.com.ucsal.olimpiadas;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class CadastrarParticipante {
+public class CadastrarParticipante extends Acao {
 	private int proximoParticipanteId = 1;
 
 
 	static List<Participante> participantes = new ArrayList<>();
 
-	public void cadastrarParticipante(Scanner in) {
+
+	@Override
+	public void executar(Factory f) {
 		System.out.print("Nome: ");
-		var nome = in.nextLine();
+		String nome = f.getIn().nextLine();
 
 		System.out.print("Email (opcional): ");
-		var email = in.nextLine();
+		String email = f.getIn().nextLine();
 
 		if (nome == null || nome.isBlank()) {
 			System.out.println("nome inválido");
@@ -28,5 +29,6 @@ public class CadastrarParticipante {
 		participantes.add(p);
 
 		System.out.println("Participante cadastrado: " + p);
+		
 	}
 }

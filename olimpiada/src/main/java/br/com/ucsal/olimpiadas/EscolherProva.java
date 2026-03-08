@@ -2,7 +2,7 @@ package br.com.ucsal.olimpiadas;
 
 import java.util.Scanner;
 
-public class EscolherProva {
+public class EscolherProva{
 	public Long escolherProva(Scanner in, CadastrarProva provas) {
 		System.out.println("\nProvas:");
 		for (Prova p : provas.provas) {
@@ -23,4 +23,6 @@ public class EscolherProva {
 			return null;
 		}
 	}
+
+
 }

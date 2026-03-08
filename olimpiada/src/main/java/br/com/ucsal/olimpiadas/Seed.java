@@ -3,15 +3,19 @@ package br.com.ucsal.olimpiadas;
 public class Seed {
 	
 	private int proximaQuestaoId = 1;
-	CadastrarProva provas = new CadastrarProva();
-	CadastrarQuestao questoes =new CadastrarQuestao();
+	private Factory f;
+
+	public Seed(Factory f) {
+		this.f = f;
+	}
 	public void seed() {
 
 		Prova prova = new Prova();
 		
-		prova.setId(provas.getProximaProvaId()+1);
+		prova.setId(f.getCadastraProva().getProximaProvaId()+1);
 		prova.setTitulo("Olimpíada 2026 • Nível 1 • Prova A");
-		provas.provas.add(prova);
+		f.getCadastraProva();
+		CadastrarProva.provas.add(prova);
 
 		var q1 = new Questao();
 		q1.setId(proximaQuestaoId++);
@@ -29,6 +33,6 @@ public class Seed {
 
 		q1.setAlternativaCorreta('C');
 
-		questoes.questoes.add(q1);
+		f.getCadastrarQuestao().questoes.add(q1);
 	}
 }

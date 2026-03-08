@@ -2,23 +2,21 @@ package br.com.ucsal.olimpiadas;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class CadastrarProva {
+public class CadastrarProva extends Acao {
 
 	static List<Prova> provas = new ArrayList<>();
 
 	private int proximaProvaId = 1;
-	
 
 	public int getProximaProvaId() {
 		return proximaProvaId;
 	}
 
-
-	public void cadastrarProva(Scanner in) {
+	@Override
+	public void executar(Factory f) {
 		System.out.print("Título da prova: ");
-		String titulo = in.nextLine();
+		String titulo = f.getIn().nextLine();
 
 		if (titulo == null || titulo.isBlank()) {
 			System.out.println("título inválido");

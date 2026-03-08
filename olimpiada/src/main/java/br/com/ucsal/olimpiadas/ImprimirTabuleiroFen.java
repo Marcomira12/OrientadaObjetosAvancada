@@ -1,6 +1,6 @@
 package br.com.ucsal.olimpiadas;
 
-public class ImprimirTabuleiroFen {
+public class ImprimirTabuleiroFen{
 	
 	public void imprimirTabuleiroFen(String fen) {
 

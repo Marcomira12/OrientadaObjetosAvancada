@@ -2,40 +2,38 @@ package br.com.ucsal.olimpiadas;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-public class CadastrarQuestao {
-	CadastrarProva provas= new CadastrarProva();
+public class CadastrarQuestao extends Acao{
+	
 
 	private static int proximaQuestaoId = 1;
 	static List<Questao> questoes = new ArrayList<>();
-	
-	public void cadastrarQuestao(Scanner in, EscolherProva escolherProva) {
 
-		
-		if (provas.provas.isEmpty()) {
+	@Override
+	public void executar(Factory f) {
+		if (f.getCadastraProva().provas.isEmpty()) {
 			System.out.println("não há provas cadastradas");
 			return;
 		}
 
-		Long provaId = escolherProva.escolherProva(in, provas);
+		Long provaId = f.getEscolherProva().escolherProva(f.getIn(), f.getCadastraProva());
 		if (provaId == null)
 			return;
 
 		System.out.println("Enunciado:");
-		var enunciado = in.nextLine();
+		var enunciado = f.getIn().nextLine();
 
 		var alternativas = new String[5];
 		for (int i = 0; i < 5; i++) {
 			char letra = (char) ('A' + i);
 			System.out.print("Alternativa " + letra + ": ");
-			alternativas[i] = letra + ") " + in.nextLine();
+			alternativas[i] = letra + ") " + f.getIn().nextLine();
 		}
 
 		System.out.print("Alternativa correta (A–E): ");
 		char correta;
 		try {
-			correta = Questao.normalizar(in.nextLine().trim().charAt(0));
+			correta = Questao.normalizar(f.getIn().nextLine().trim().charAt(0));
 		} catch (Exception e) {
 			System.out.println("alternativa inválida");
 			return;
@@ -52,5 +50,6 @@ public class CadastrarQuestao {
 		
 
 		System.out.println("Questão cadastrada: " + q.getId() + " (na prova " + provaId + ")");
+		
 	}
 }
