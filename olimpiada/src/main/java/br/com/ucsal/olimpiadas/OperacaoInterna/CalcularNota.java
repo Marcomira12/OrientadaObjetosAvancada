@@ -1,4 +1,7 @@
-package br.com.ucsal.olimpiadas;
+package br.com.ucsal.olimpiadas.OperacaoInterna;
+
+import br.com.ucsal.olimpiadas.Resposta;
+import br.com.ucsal.olimpiadas.Tentativa;
 
 public class CalcularNota {
 	public int calcularNota(Tentativa tentativa) {

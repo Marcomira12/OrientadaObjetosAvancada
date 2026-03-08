@@ -1,11 +1,16 @@
-package br.com.ucsal.olimpiadas;
+package br.com.ucsal.olimpiadas.Operacao;
+import br.com.ucsal.olimpiadas.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CadastrarProva extends Acao {
 
-	static List<Prova> provas = new ArrayList<>();
+	private static List<Prova> provas = new ArrayList<>();
+	
+	public static List<Prova> getProvas() {
+		return provas;
+	}
 
 	private int proximaProvaId = 1;
 

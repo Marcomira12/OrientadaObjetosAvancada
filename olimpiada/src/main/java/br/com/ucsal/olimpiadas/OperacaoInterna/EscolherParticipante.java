@@ -1,6 +1,7 @@
-package br.com.ucsal.olimpiadas;
-
+package br.com.ucsal.olimpiadas.OperacaoInterna;
 import java.util.Scanner;
+
+import br.com.ucsal.olimpiadas.Operacao.Factory;
 
 public class EscolherParticipante {
 	private Factory f;
@@ -11,14 +12,14 @@ public class EscolherParticipante {
 
 	public Long escolherParticipante(Scanner in) {
 		System.out.println("\nParticipantes:");
-		for (var p : f.getCadastrar().participantes) {
+		for (var p : f.getCadastrar().getParticipantes()) {
 			System.out.printf("  %d) %s%n", p.getId(), p.getNome());
 		}
 		System.out.print("Escolha o id do participante: ");
 
 		try {
 			long id = Long.parseLong(in.nextLine());
-			boolean existe = f.getCadastrar().participantes.stream().anyMatch(p -> p.getId() == id);
+			boolean existe = f.getCadastrar().getParticipantes().stream().anyMatch(p -> p.getId() == id);
 			if (!existe) {
 				System.out.println("id inválido");
 				return null;

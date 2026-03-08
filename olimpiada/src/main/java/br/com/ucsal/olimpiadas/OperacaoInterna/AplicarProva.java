@@ -1,4 +1,7 @@
-package br.com.ucsal.olimpiadas;
+package br.com.ucsal.olimpiadas.OperacaoInterna;
+import br.com.ucsal.olimpiadas.*;
+import br.com.ucsal.olimpiadas.Operacao.Acao;
+import br.com.ucsal.olimpiadas.Operacao.Factory;
 
 public class AplicarProva extends Acao {
 	private long proximaTentativaId = 1;
@@ -6,11 +9,11 @@ public class AplicarProva extends Acao {
 	@Override
 	public void executar(Factory f) {
 
-		if (f.getCadastrar().participantes.isEmpty()) {
+		if (f.getCadastrar().getParticipantes().isEmpty()) {
 			System.out.println("cadastre participantes primeiro");
 			return;
 		}
-		if (f.getCadastraProva().provas.isEmpty()) {
+		if (f.getCadastraProva().getProvas().isEmpty()) {
 			System.out.println("cadastre provas primeiro");
 			return;
 		}
@@ -23,7 +26,7 @@ public class AplicarProva extends Acao {
 		if (provaId == null)
 			return;
 
-		var questoesDaProva = f.getCadastrarQuestao().questoes.stream().filter(q -> q.getProvaId() == provaId).toList();
+		var questoesDaProva = f.getCadastrarQuestao().getQuestoes().stream().filter(q -> q.getProvaId() == provaId).toList();
 
 		if (questoesDaProva.isEmpty()) {
 			System.out.println("esta prova não possui questões cadastradas");
@@ -42,7 +45,7 @@ public class AplicarProva extends Acao {
 			System.out.println(q.getEnunciado());
 
 			System.out.println("Posição inicial:");
-			f.getTabuleiro().imprimirTabuleiroFen(q.getFenInicial());
+			//f.getTabuleiro().imprimirTabuleiroFen(q.getFenInicial());
 
 			for (var alt : q.getAlternativas()) {
 				System.out.println(alt);
@@ -65,7 +68,7 @@ public class AplicarProva extends Acao {
 			tentativa.getRespostas().add(r);
 		}
 
-		f.getTentativas().tentativas.add(tentativa);
+		f.getTentativas().getTentativas().add(tentativa);
 
 		int nota = f.getCalcularNota().calcularNota(tentativa);
 		System.out.println("\n--- Fim da Prova ---");

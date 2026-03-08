@@ -1,8 +1,5 @@
 package br.com.ucsal.olimpiadas;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class Participante {
 	private int id;

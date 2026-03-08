@@ -1,8 +1,15 @@
-package br.com.ucsal.olimpiadas;
+package br.com.ucsal.olimpiadas.Operacao;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import br.com.ucsal.olimpiadas.OperacaoInterna.AplicarProva;
+import br.com.ucsal.olimpiadas.OperacaoInterna.CalcularNota;
+import br.com.ucsal.olimpiadas.OperacaoInterna.EscolherParticipante;
+import br.com.ucsal.olimpiadas.OperacaoInterna.EscolherProva;
+import br.com.ucsal.olimpiadas.OperacaoInterna.ImprimirTabuleiroFen;
+import br.com.ucsal.olimpiadas.OperacaoInterna.Seed;
 
 public class Factory {
 	private Scanner in = new Scanner(System.in);

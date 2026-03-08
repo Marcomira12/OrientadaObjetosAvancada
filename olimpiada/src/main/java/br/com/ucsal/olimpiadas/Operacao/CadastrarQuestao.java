@@ -1,4 +1,5 @@
-package br.com.ucsal.olimpiadas;
+package br.com.ucsal.olimpiadas.Operacao;
+import br.com.ucsal.olimpiadas.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +8,15 @@ public class CadastrarQuestao extends Acao{
 	
 
 	private static int proximaQuestaoId = 1;
-	static List<Questao> questoes = new ArrayList<>();
+	private static List<Questao> questoes = new ArrayList<>();
+
+	public static int getProximaQuestaoId() {
+		return proximaQuestaoId;
+	}
 
 	@Override
 	public void executar(Factory f) {
-		if (f.getCadastraProva().provas.isEmpty()) {
+		if (f.getCadastraProva().getProvas().isEmpty()) {
 			System.out.println("não há provas cadastradas");
 			return;
 		}
@@ -46,10 +51,18 @@ public class CadastrarQuestao extends Acao{
 		q.setAlternativas(alternativas);
 		q.setAlternativaCorreta(correta);
 		
-		questoes.add(q);
+		getQuestoes().add(q);
 		
 
 		System.out.println("Questão cadastrada: " + q.getId() + " (na prova " + provaId + ")");
 		
+	}
+
+	public static List<Questao> getQuestoes() {
+		return questoes;
+	}
+
+	public static void setQuestoes(List<Questao> questoes) {
+		CadastrarQuestao.questoes = questoes;
 	}
 }

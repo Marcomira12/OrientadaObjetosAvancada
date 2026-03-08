@@ -1,4 +1,6 @@
 package br.com.ucsal.olimpiadas;
+import br.com.ucsal.olimpiadas.Operacao.Factory;
+
 
 public class App {
 

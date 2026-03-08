@@ -1,4 +1,9 @@
-package br.com.ucsal.olimpiadas;
+package br.com.ucsal.olimpiadas.OperacaoInterna;
+
+import br.com.ucsal.olimpiadas.Prova;
+import br.com.ucsal.olimpiadas.Questao;
+import br.com.ucsal.olimpiadas.Operacao.CadastrarProva;
+import br.com.ucsal.olimpiadas.Operacao.Factory;
 
 public class Seed {
 	
@@ -15,7 +20,7 @@ public class Seed {
 		prova.setId(f.getCadastraProva().getProximaProvaId()+1);
 		prova.setTitulo("Olimpíada 2026 • Nível 1 • Prova A");
 		f.getCadastraProva();
-		CadastrarProva.provas.add(prova);
+		CadastrarProva.getProvas().add(prova);
 
 		var q1 = new Questao();
 		q1.setId(proximaQuestaoId++);
@@ -33,6 +38,6 @@ public class Seed {
 
 		q1.setAlternativaCorreta('C');
 
-		f.getCadastrarQuestao().questoes.add(q1);
+		f.getCadastrarQuestao().getQuestoes().add(q1);
 	}
 }
