@@ -19,14 +19,12 @@ public class Factory {
 	private EscolherProva escolherProva = new EscolherProva();
 	private AplicarProva aplicarProva = new AplicarProva();
 	private ListarTentativa tentativas = new ListarTentativa();
-	private Seed seed;
+	private Seed seed= new Seed();
 	private CalcularNota calcularNota = new CalcularNota();
-	private EscolherParticipante escolherParticipante;
+	private EscolherParticipante escolherParticipante = new EscolherParticipante();
 	private ImprimirTabuleiroFen tabuleiro = new ImprimirTabuleiroFen();
 
 	public Factory() {
-		this.seed = new Seed(this);
-		this.escolherParticipante = new EscolherParticipante(this);
 		if (lista.isEmpty()) {
 			lista.add(cadastrar);
 			lista.add(cadastraProva);

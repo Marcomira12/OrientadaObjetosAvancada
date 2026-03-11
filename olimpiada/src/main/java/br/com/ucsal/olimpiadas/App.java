@@ -6,7 +6,7 @@ public class App {
 
 	public static void main(String[] args) {
 		Factory ope = new Factory();
-		ope.getSeed().seed();;
+		ope.getSeed().seed(ope);;
 
 		while (true) {
 			System.out.println("\n=== OLIMPÍADA DE QUESTÕES (V1) ===");
