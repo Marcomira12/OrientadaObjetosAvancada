@@ -8,8 +8,12 @@ import br.com.ucsal.olimpiadas.Operacao.Factory;
 public class Seed {
 	
 	private int proximaQuestaoId = 1;
-	
-	public void seed(Factory f) {
+	private Factory f;
+
+	public Seed(Factory f) {
+		this.f = f;
+	}
+	public void seed() {
 
 		Prova prova = new Prova();
 		

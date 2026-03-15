@@ -4,7 +4,7 @@ import br.com.ucsal.olimpiadas.Operacao.Acao;
 import br.com.ucsal.olimpiadas.Operacao.Factory;
 
 public class AplicarProva extends Acao {
-	private int proximaTentativaId = 1;
+	private long proximaTentativaId = 1;
 
 	@Override
 	public void executar(Factory f) {
@@ -18,7 +18,7 @@ public class AplicarProva extends Acao {
 			return;
 		}
 
-		var participanteId = f.getEscolherParticipante().escolherParticipante(f);
+		var participanteId = f.getEscolherParticipante().escolherParticipante(f.getIn());
 		if (participanteId == null)
 			return;
 
@@ -44,7 +44,7 @@ public class AplicarProva extends Acao {
 			System.out.println("\nQuestão #" + q.getId());
 			System.out.println(q.getEnunciado());
 
-			//System.out.println("Posição inicial:");
+			System.out.println("Posição inicial:");
 			//f.getTabuleiro().imprimirTabuleiroFen(q.getFenInicial());
 
 			for (var alt : q.getAlternativas()) {
