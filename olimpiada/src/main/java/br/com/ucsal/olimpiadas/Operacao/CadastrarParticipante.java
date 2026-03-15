@@ -1,7 +1,5 @@
 package br.com.ucsal.olimpiadas.Operacao;
 import br.com.ucsal.olimpiadas.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CadastrarParticipante extends Acao<Participante> {
 	private int proximoParticipanteId = 1;

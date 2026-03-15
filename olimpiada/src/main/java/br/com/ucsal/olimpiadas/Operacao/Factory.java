@@ -1,10 +1,10 @@
 package br.com.ucsal.olimpiadas.Operacao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import br.com.ucsal.olimpiadas.OperacaoInterna.AplicarProva;
 import br.com.ucsal.olimpiadas.OperacaoInterna.CalcularNota;
 import br.com.ucsal.olimpiadas.OperacaoInterna.EscolherParticipante;
 import br.com.ucsal.olimpiadas.OperacaoInterna.EscolherProva;
@@ -24,6 +24,9 @@ public class Factory {
 	private EscolherParticipante escolherParticipante = new EscolherParticipante();
 	private ImprimirTabuleiroFen tabuleiro = new ImprimirTabuleiroFen();
 
+	private static final List<Acao> lista = new ArrayList<>();
+
+	
 	public Factory() {
 		if (lista.isEmpty()) {
 			lista.add(cadastrar);
@@ -34,11 +37,9 @@ public class Factory {
 		}
 	}
 
-	static final List<Acao> lista = new ArrayList<>();
-
 	public static List<Acao> getLista() {
-		return lista;
-	}
+        return Collections.unmodifiableList(lista);
+    }
 
 	public ImprimirTabuleiroFen getTabuleiro() {
 		return tabuleiro;

@@ -1,16 +1,8 @@
 package br.com.ucsal.olimpiadas.Operacao;
 import br.com.ucsal.olimpiadas.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class CadastrarProva extends Acao {
-
-	private static List<Prova> provas = new ArrayList<>();
-	
-	public static List<Prova> getProvas() {
-		return provas;
-	}
+public class CadastrarProva extends Acao<Prova> {
 
 	private int proximaProvaId = 1;
 
@@ -32,7 +24,7 @@ public class CadastrarProva extends Acao {
 		prova.setId(proximaProvaId++);
 		prova.setTitulo(titulo);
 
-		provas.add(prova);
+		lista.add(prova);
 		System.out.println("Prova criada: " + prova.getId());
 	}
 }

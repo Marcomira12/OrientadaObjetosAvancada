@@ -15,9 +15,8 @@ public class Seed {
 		
 		prova.setId(f.getCadastraProva().getProximaProvaId()+1);
 		prova.setTitulo("Olimpíada 2026 • Nível 1 • Prova A");
-		f.getCadastraProva();
-		CadastrarProva.getProvas().add(prova);
-
+		
+		f.getCadastraProva().getLista().add(prova);
 		var q1 = new Questao();
 		q1.setId(proximaQuestaoId++);
 		q1.setProvaId(prova.getId());
@@ -34,6 +33,6 @@ public class Seed {
 
 		q1.setAlternativaCorreta('C');
 
-		f.getCadastrarQuestao().getQuestoes().add(q1);
+		f.getCadastrarQuestao().getLista().add(q1);
 	}
 }

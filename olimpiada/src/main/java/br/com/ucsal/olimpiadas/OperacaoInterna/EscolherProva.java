@@ -2,19 +2,17 @@ package br.com.ucsal.olimpiadas.OperacaoInterna;
 import br.com.ucsal.olimpiadas.*;
 import br.com.ucsal.olimpiadas.Operacao.*;
 
-import java.util.Scanner;
-
 public class EscolherProva{
-	public Long escolherProva(Scanner in, CadastrarProva provas) {
+	public Long escolherProva(Factory f) {
 		System.out.println("\nProvas:");
-		for (Prova p : provas.getProvas()) {
+		for (Prova p : f.getCadastraProva().getLista()) {
 			System.out.printf("  %d) %s%n", p.getId(), p.getTitulo());
 		}
 		System.out.print("Escolha o id da prova: ");
 
 		try {
-			long id = Integer.parseInt(in.nextLine());
-			boolean existe = provas.getProvas().stream().anyMatch(p -> p.getId() == id);
+		    Long id = Long.parseLong(f.getIn().nextLine());
+			boolean existe = f.getCadastraProva().getLista().stream().anyMatch(p -> p.getId() == id);
 			if (!existe) {
 				System.out.println("id inválido");
 				return null;

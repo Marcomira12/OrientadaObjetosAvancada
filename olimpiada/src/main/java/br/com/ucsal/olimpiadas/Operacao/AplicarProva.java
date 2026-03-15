@@ -1,19 +1,17 @@
-package br.com.ucsal.olimpiadas.OperacaoInterna;
+package br.com.ucsal.olimpiadas.Operacao;
 import br.com.ucsal.olimpiadas.*;
-import br.com.ucsal.olimpiadas.Operacao.Acao;
-import br.com.ucsal.olimpiadas.Operacao.Factory;
 
-public class AplicarProva extends Acao {
+public class AplicarProva extends Acao<Tentativa> {
 	private int proximaTentativaId = 1;
 
 	@Override
 	public void executar(Factory f) {
 
-		if (f.getCadastrar().getParticipantes().isEmpty()) {
+		if (f.getCadastrar().lista.isEmpty()) {
 			System.out.println("cadastre participantes primeiro");
 			return;
 		}
-		if (f.getCadastraProva().getProvas().isEmpty()) {
+		if (f.getCadastraProva().lista.isEmpty()) {
 			System.out.println("cadastre provas primeiro");
 			return;
 		}
@@ -21,12 +19,13 @@ public class AplicarProva extends Acao {
 		var participanteId = f.getEscolherParticipante().escolherParticipante(f);
 		if (participanteId == null)
 			return;
-
-		var provaId = f.getEscolherProva().escolherProva(f.getIn(), f.getCadastraProva());
+		
+		
+		var provaId = f.getEscolherProva().escolherProva(f);
 		if (provaId == null)
 			return;
 
-		var questoesDaProva = f.getCadastrarQuestao().getQuestoes().stream().filter(q -> q.getProvaId() == provaId).toList();
+		var questoesDaProva = f.getCadastrarQuestao().lista.stream().filter(q -> q.getProvaId() == provaId).toList();
 
 		if (questoesDaProva.isEmpty()) {
 			System.out.println("esta prova não possui questões cadastradas");
@@ -44,8 +43,8 @@ public class AplicarProva extends Acao {
 			System.out.println("\nQuestão #" + q.getId());
 			System.out.println(q.getEnunciado());
 
-			//System.out.println("Posição inicial:");
-			//f.getTabuleiro().imprimirTabuleiroFen(q.getFenInicial());
+			System.out.println("Posição inicial:");
+			f.getTabuleiro().imprimirTabuleiroFen(q.getFenInicial());
 
 			for (var alt : q.getAlternativas()) {
 				System.out.println(alt);
@@ -68,7 +67,7 @@ public class AplicarProva extends Acao {
 			tentativa.getRespostas().add(r);
 		}
 
-		f.getTentativas().getTentativas().add(tentativa);
+		f.getTentativas().lista.add(tentativa);
 
 		int nota = f.getCalcularNota().calcularNota(tentativa);
 		System.out.println("\n--- Fim da Prova ---");
